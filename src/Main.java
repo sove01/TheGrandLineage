@@ -4,7 +4,8 @@ import World.WorldMap;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        WorldMap m1 = new WorldMap();
-        m1.map();
+
+        WorldMap wm = new WorldMap();
+        wm.displayMap();
     }
 }
