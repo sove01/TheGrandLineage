@@ -1,0 +1,12 @@
+# ID ; Name ; North ; South ; East ; West ; Region
+1;YetiMountains;-1;2;-1;-1;Tundra
+2;SnailInn;1;-1;-1;-1;Tundra
+3;SentinelOfLight;-1;4;-1;-1;Desert
+4;IsleOfEmerald;3;5;-1;-1;Desert
+5;CryptOfTheUnbounds;4;-1;-1;-1;Desert
+6;Alana;-1;7;8;-1;Forest
+7;GreatSigilTree;6;-1;-1;-1;Forest
+8;Oresfall;-1;9;-1;6;Forest
+9;RoyalWoods;8;-1;-1;-1;Forest
+10;SkyCastle;-1;11;-1;-1;SkyCastle
+11;GachaRoom;10;-1;-1;-1;SkyCastle
