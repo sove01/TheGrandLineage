@@ -1,7 +1,7 @@
 package Command;
 
 public interface Command {
-    void execute();
+    String execute();
     String undo();
     boolean exit();
 }

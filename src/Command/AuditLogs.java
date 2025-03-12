@@ -1,10 +1,10 @@
 package Command;
 
-public class AuditLogs implements Command{
+public class AuditLogs implements Command {
 
     @Override
     public String execute() {
-
+        return "";
     }
 
     @Override

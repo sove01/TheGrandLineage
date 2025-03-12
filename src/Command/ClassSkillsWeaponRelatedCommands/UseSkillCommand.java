@@ -10,8 +10,18 @@ public class UseSkillCommand implements Command {
     public UseSkillCommand(Player player, Skill skill) {}
 
     @Override
-    public void execute() {}
+    public String execute() {
+        return "";
+    }
 
     @Override
-    public void undo() {}
+    public String undo() {
+        return "";
+    }
+
+    @Override
+    public boolean exit() {
+        return false;
+    }
+
 }

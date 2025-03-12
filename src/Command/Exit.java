@@ -3,13 +3,13 @@ package Command;
 public class Exit implements Command{
 
     @Override
-    public void execute() {
-
+    public String execute() {
+        return "The lineage continues..";
     }
 
     @Override
-    public void undo() {
-
+    public String undo() {
+        return "";
     }
 
     @Override

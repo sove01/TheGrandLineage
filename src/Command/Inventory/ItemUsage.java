@@ -12,8 +12,8 @@ public class ItemUsage implements Command {
     }
 
     @Override
-    public void execute() {
-        item.use(player);
+    public String execute() {
+        return "Used item : " + item.use(player);
     }
 
     @Override
