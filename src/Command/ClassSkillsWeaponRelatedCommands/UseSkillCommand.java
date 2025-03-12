@@ -10,9 +10,10 @@ public class UseSkillCommand implements Command {
     public UseSkillCommand(Player player, Skill skill) {}
 
     @Override
-    public String execute() {
-        return "";
+    public String execute(Player player, Skill skill) {
+        return "Using skill : " + skill.getName() + player.getClass();
     }
+
 
     @Override
     public String undo() {
