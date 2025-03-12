@@ -1,21 +1,16 @@
 package Command;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class AuditLogs implements Command{
 
     @Override
-    public void execute() {
+    public String execute() {
 
     }
 
     @Override
-    public void undo() {
+    public String undo() {
 
+        return null;
     }
 
     @Override

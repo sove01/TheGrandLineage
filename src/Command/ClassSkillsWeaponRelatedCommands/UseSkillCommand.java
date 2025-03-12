@@ -1,6 +1,7 @@
 package Command.ClassSkillsWeaponRelatedCommands;
 
 import Command.Command;
+import Command.Inventory.Player;
 
 public class UseSkillCommand implements Command {
     private Player player;

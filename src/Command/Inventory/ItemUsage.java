@@ -1,6 +1,5 @@
 package Command.Inventory;
 
-import Command.ClassSkillsWeaponRelatedCommands.Player;
 import Command.Command;
 
 public class ItemUsage implements Command {
@@ -18,8 +17,8 @@ public class ItemUsage implements Command {
     }
 
     @Override
-    public void undo() {
-        System.out.println("Undoing item usage: " + item.getName());
+    public String undo() {
+        return "Undoing item usage: " + item.getName();
     }
 
     @Override

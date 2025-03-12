@@ -2,6 +2,6 @@ package Command;
 
 public interface Command {
     void execute();
-    void undo();
+    String undo();
     boolean exit();
 }

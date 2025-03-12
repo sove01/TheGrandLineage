@@ -1,11 +1,9 @@
 package Command.Inventory;
 
-import Command.ClassSkillsWeaponRelatedCommands.Player;
-
 public abstract class Item {
-    private String name;
-    private String description;
-    private boolean isConsumable;
+    protected String name;
+    protected String description;
+    protected boolean isConsumable;
 
     public Item(String name, String description, boolean isConsumable) {
         this.name = name;
@@ -26,5 +24,5 @@ public abstract class Item {
         return isConsumable;
     }
 
-    public abstract void use(Player player);
+    public abstract String use(Player player);
 }
