@@ -1,4 +1,4 @@
-package Player.Inventory;
+package Command.Inventory;
 
 public class Inventory {
 }

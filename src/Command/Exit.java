@@ -11,4 +11,9 @@ public class Exit implements Command{
     public void undo() {
 
     }
+
+    @Override
+    public boolean exit() {
+        return true;
+    }
 }

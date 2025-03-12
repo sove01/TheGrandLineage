@@ -17,4 +17,9 @@ public class AuditLogs implements Command{
     public void undo() {
 
     }
+
+    @Override
+    public boolean exit() {
+        return false;
+    }
 }
