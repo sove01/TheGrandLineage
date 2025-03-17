@@ -23,10 +23,20 @@ public class Player {
         itemUsageCommand.execute();
     }
 
-    public void useItem(Item item) {
-        Command itemUsageCommand = new ItemUsage(this, item);
-        itemUsageCommand.execute();
+    public void displayInventory() {
+        inventory.displayInventory();
     }
+
+
+    public void pickup(Item item) {
+        inventory.addItem(item);
+        System.out.println("Picked up " + item.getName());
+    }
+
+//    public void useItem(Item item) {
+//        Command itemUsageCommand = new ItemUsage(this, item);
+//        itemUsageCommand.execute();
+//    }
 
     public String applyArtifactEffect(Artifact artifact) {
         return "Applying artifact effect:" + artifact.getName();
