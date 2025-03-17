@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class WorldMap {
@@ -91,6 +92,19 @@ public class WorldMap {
             System.out.println("  - Next location: [North: " + current.getDirection(0) + ", South: " + current.getDirection(1) + ", East: " + current.getDirection(2) + ", West: " + current.getDirection(3) + "]");
         } else {
             System.out.println("Failed to load map.");
+        }
+    }
+
+    public boolean move(int direction) {
+        Location current = getCurrentPosition();
+        int nextLocationID = current.getDirection(direction);
+
+        if (nextLocationID != -1 && world.containsKey(nextLocationID)) {
+            this.currentPosition = nextLocationID;
+            return true;
+        } else {
+            System.out.println("Failed to move direction: " + direction);
+            return false;
         }
     }
 }
