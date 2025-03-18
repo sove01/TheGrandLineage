@@ -17,7 +17,7 @@ public class UseSkillCommand implements Command {
 
     @Override
     public String execute() {
-        return "Using Skill : " + skill.getName() + player.getClass();
+        return "Using Skill : " + skill.getSkillName() + player.getClass();
     }
 
     @Override

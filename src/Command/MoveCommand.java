@@ -1,5 +1,6 @@
 package Command;
 
+import World.Location;
 import World.WorldMap;
 
 public class MoveCommand implements Command {
@@ -18,7 +19,9 @@ public class MoveCommand implements Command {
     @Override
     public String execute() {
         if (map.move(direction)) {
-            return "Moved to " + map.getCurrentPosition().getName() + ".";
+            Location currentLocation = map.getCurrentPosition();
+//            return "Moved to " + map.getCurrentPosition().getName() + ".";
+            return "Moved to " + currentLocation.getName();
         } else {
             return "Cannot move in that direction. " + direction;
         }

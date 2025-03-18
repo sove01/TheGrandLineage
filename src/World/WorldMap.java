@@ -69,30 +69,33 @@ public class WorldMap {
     }
 
     public void displayMap() {
-        System.out.println("Loading map...");
-        if (loadMap()) {
-            System.out.println("Map loaded successfully!\n");
+        System.out.println("Displaying map...");
 
-            System.out.println("Regions and their locations:");
-            System.out.println("--------------------------------");
-
-            for (Region region : regions.values()) {
-                System.out.println("Region: " + region.getName());
-                for (Location location : region.getLocations()) {
-                    System.out.println("  - " + location.getName() + " (ID: " + location.getId() + ")");
-                }
-                System.out.println();
-            }
-
-            // Shows current position
-            Location current = getCurrentPosition();
-            System.out.println("Current Position (Random Spawn):");
-            System.out.println("  - Location: " + current.getName());
-            System.out.println("  - Region: " + current.getRegion().getName());
-            System.out.println("  - Next location: [North: " + current.getDirection(0) + ", South: " + current.getDirection(1) + ", East: " + current.getDirection(2) + ", West: " + current.getDirection(3) + "]");
-        } else {
-            System.out.println("Failed to load map.");
+        if (world.isEmpty()) {
+            System.out.println("No map loaded. Please load the map first.");
+            return;
         }
+
+        System.out.println("Map loaded successfully!\n");
+
+        System.out.println("Regions and their locations:");
+        System.out.println("--------------------------------");
+
+        for (Region region : regions.values()) {
+            System.out.println("Region: " + region.getName());
+            for (Location location : region.getLocations()) {
+                System.out.println("  - " + location.getName() + " (ID: " + location.getId() + ")");
+            }
+            System.out.println();
+        }
+
+        // Shows current position
+        Location current = getCurrentPosition();
+        System.out.println("Current Position (Random Spawn):");
+        System.out.println("  - Location: " + current.getName());
+        System.out.println("  - Region: " + current.getRegion().getName());
+        System.out.println("  - Next location: [North: " + current.getDirection(0) + ", South: " + current.getDirection(1) + ", East: " + current.getDirection(2) + ", West: " + current.getDirection(3) + "]");
+
     }
 
     public boolean move(int direction) {

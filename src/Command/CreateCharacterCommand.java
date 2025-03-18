@@ -16,8 +16,9 @@ public class CreateCharacterCommand implements Command {
     public String execute() {
         System.out.println("Enter the name of the character: ");
         String playerName = scanner.nextLine();
-        player = new Player (playerName);
-        return "";
+        player = new Player(playerName);
+
+        return "Character created!" + player.getName();
     }
 
     @Override
@@ -28,5 +29,9 @@ public class CreateCharacterCommand implements Command {
     @Override
     public boolean exit() {
         return false;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
