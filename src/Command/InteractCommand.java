@@ -1,6 +1,6 @@
 package Command;
 
-import Command.Inventory.Player;
+import Inventory.Player;
 
 public class InteractCommand implements Command {
     private Player player;

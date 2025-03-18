@@ -1,6 +1,6 @@
 package Command;
 
-import Command.Inventory.Player;
+import Inventory.Player;
 
 public abstract class GameObject {
     private String name;

@@ -1,4 +1,4 @@
-package Command.Inventory;
+package Inventory;
 
 import Command.Command;
 

@@ -5,7 +5,13 @@ import Command.ClassSkillsWeaponRelatedCommands.Weapon;
 
 import java.util.List;
 
-public class Sword implements Weapon {
+public class Sword implements Weapon{
+
+    @Override
+    public String getWeaponName() {
+        return "";
+    }
+
     @Override
     public String attack() {
         return "";

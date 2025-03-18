@@ -11,6 +11,10 @@ public class MoveCommand implements Command {
         this.direction = direction;
     }
 
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
     @Override
     public String execute() {
         if (map.move(direction)) {

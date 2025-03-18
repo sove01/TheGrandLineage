@@ -1,4 +1,4 @@
-package Command.Inventory;
+package Inventory;
 
 import java.util.ArrayList;
 import java.util.List;

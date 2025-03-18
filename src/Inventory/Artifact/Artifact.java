@@ -1,7 +1,7 @@
-package Command.Inventory.Artifact;
+package Inventory.Artifact;
 
-import Command.Inventory.Item;
-import Command.Inventory.Player;
+import Inventory.Item;
+import Inventory.Player;
 
 public class Artifact extends Item {
     private String Effect;

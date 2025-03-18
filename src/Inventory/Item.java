@@ -1,4 +1,4 @@
-package Command.Inventory;
+package Inventory;
 
 public abstract class Item {
     protected String name;

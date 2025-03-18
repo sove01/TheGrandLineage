@@ -6,6 +6,12 @@ import Command.ClassSkillsWeaponRelatedCommands.Weapon;
 import java.util.List;
 
 public class Spear implements Weapon {
+
+    @Override
+    public String getWeaponName() {
+        return "";
+    }
+
     @Override
     public String attack() {
         return "";

@@ -1,10 +1,11 @@
-package Command.Inventory;
+package Inventory;
 
 import Command.ClassSkillsWeaponRelatedCommands.Skill;
 import Command.ClassSkillsWeaponRelatedCommands.Weapon;
 import Command.Command;
-import Command.Inventory.Artifact.Artifact;
+import Inventory.Artifact.Artifact;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -14,8 +15,15 @@ public class Player {
     private List<Skill> learnedSkills;
     private int experience;
 
-    public Player(Inventory inventory) {
-        this.inventory = inventory;
+
+    public Player(String name) {
+        this.name = name;
+        this.inventory = new Inventory();
+        this.learnedSkills = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addItem(Item item) {
@@ -42,7 +50,14 @@ public class Player {
         return "Applying artifact effect:" + artifact.getName();
     }
 
-    public void equipWeapon(Weapon weapon) {
+    public String equipWeapon(Weapon weapon) {
+        this.equippedWeapon = weapon;
+        if (weapon != null) {
+            return "Equipped " + weapon.getWeaponName();
+        } else {
+            return "No weapon to equip";
+        }
+
     }
 
     public void learnSkill(Skill skill) {

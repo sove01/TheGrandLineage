@@ -1,7 +1,7 @@
 package Command;
 
-import Command.Inventory.Item;
-import Command.Inventory.Player;
+import Inventory.Item;
+import Inventory.Player;
 
 public class PickUpCommand implements Command {
     private Player player;
