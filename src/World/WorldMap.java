@@ -3,14 +3,51 @@ package World;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class WorldMap {
     private HashMap<String, Region> regions = new HashMap<>();
     private HashMap<Integer, Location> world = new HashMap<>();
     private int currentPosition;
+    private ArrayList<String> trinkets = new ArrayList<>();
+    private Random rand = new Random();
+
+    //list of trinkets
+    public WorldMap() {
+        trinkets.add("old amulet");
+        trinkets.add("old ring");
+        trinkets.add("idol of the forgotten");
+        trinkets.add("opal");
+        trinkets.add("emerald");
+        trinkets.add("sapphire");
+        trinkets.add("ruby");
+        trinkets.add("diamond");
+        trinkets.add("Scroll of ignis");
+        trinkets.add("Scroll of gelidus");
+        trinkets.add("Scroll of tenebris");
+        trinkets.add("Scroll of celeritas");
+        trinkets.add("Scroll of nocere");
+        trinkets.add("Scroll of scrupus");
+        trinkets.add("Scroll of viribus");
+        trinkets.add("Scroll of velo");
+        trinkets.add("Scroll of sagitta sol");
+    }
+
+    // random trinket spawns
+    public void RandomTrinketSpawn() {
+        if (world.isEmpty()) {
+            System.out.println("Cannot spawn trinkets world is not loaded ");
+        }
+        Objects[] keys = (Objects[]) world.keySet().toArray();
+        int randomLocationId = (int) rand.nextInt(keys.length);
+        Location location = world.get(randomLocationId);
+
+        String trinket = trinkets.get(rand.nextInt(trinkets.size()));
+
+        location.addItem(trinket);
+
+
+    }
 
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/World/Map.csv"))) {
@@ -77,6 +114,8 @@ public class WorldMap {
         }
 
         System.out.println("Map loaded successfully!\n");
+        System.out.println("Trinkets spotted in this area:");
+        RandomTrinketSpawn();
 
         System.out.println("Regions and their locations:");
         System.out.println("--------------------------------");

@@ -1,16 +1,27 @@
 package World;
 
+import java.util.ArrayList;
+
 public class Location {
     private String name;
     private int id;
     private int[] directions; // [North, South, East, West]
     private Region region;
+    private ArrayList<String> items = new ArrayList<>();
 
     public Location(String name, int id, int[] directions, Region region) {
         this.name = name;
         this.id = id;
         this.directions = directions;
         this.region = region;
+    }
+
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public ArrayList<String> getItems() {
+        return items;
     }
 
     public String getName() {

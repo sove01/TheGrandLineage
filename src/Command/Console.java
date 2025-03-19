@@ -21,7 +21,6 @@ public class Console {
 
     public Console() {
         this.manager = new CommandManager();
-        initialize();
     }
 
     private void initialize() {
@@ -36,12 +35,14 @@ public class Console {
         createCharacterCommand.execute();
 
         Prompts = new HashMap<>();
+        Prompts.put("help", new HelpCommand());
         Prompts.put("exit", new ExitCommand());
         Prompts.put("move", new MoveCommand(map, -1));
         Prompts.put("pickup", new PickUpCommand(player, null));
         Prompts.put("interact", new InteractCommand(player, null));
         Prompts.put("inventory", new InventoryCommand(player));
         Prompts.put("history", new HistoryCommand(manager));
+        Prompts.put("useArtifact", new UseArtifactCommand(player));
 
     }
 
