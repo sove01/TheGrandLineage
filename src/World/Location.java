@@ -54,6 +54,10 @@ public class Location {
         items.add(item);
     }
 
+    public void removeItems(Item item) {
+        items.remove(item);
+    }
+
 
     public String getName() {
         return name;

@@ -23,7 +23,7 @@ public class PickUpCommand implements Command {
 
     @Override
     public String undo() {
-        location.removeItem(item);
+        location.removeItems(item);
         player.getInventory().removeItem(item);
         return "Undid picking up " + item.getName() + ".";
     }
