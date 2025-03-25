@@ -1,20 +1,19 @@
 package Inventory;
 
-import Command.ClassSkillsWeaponRelatedCommands.Skill;
-import Command.ClassSkillsWeaponRelatedCommands.Weapon;
+
 import Command.Command;
 import Inventory.Artifact.Artifact;
 import Race.Race;
 
-import Weaponry.*
+import Weaponry.*;
 import Weaponry.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private Superclass superclass;
-    private Ultraclass ultraclass;
+    private SuperClass superclass;
+    private UltraClass ultraclass;
     private int silver;
     private Inventory inventory;
     private String name;
@@ -88,7 +87,7 @@ public class Player {
     public void checkClassUpgrade() {
         if (experience >= 5000 && ultraclass == null) {
             ultraclass = new UltraClass(equippedWeapon, alignment);
-            learnedSkills.addAll(ultraclass.getUltraClassSkills());
+            learnedSkills.addAll(ultraclass.getUltraSkills());
             System.out.println("You are now ultra class");
         } else if (experience >= 1000 && superclass == null) {
             superclass = new SuperClass(equippedWeapon, alignment);
@@ -155,6 +154,14 @@ public class Player {
 
     public boolean hasItems(Item item) {
         return inventory.getItems().contains(item);
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
     }
 
     public String getEquippedWeapon() {

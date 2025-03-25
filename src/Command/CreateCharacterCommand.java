@@ -1,6 +1,11 @@
 package Command;
 
 import Inventory.Player;
+import Race.Castellan;
+import Race.Dzin;
+import Race.Khan;
+import Race.Morvid;
+import Race.Race;
 
 import java.util.Scanner;
 
@@ -18,6 +23,10 @@ public class CreateCharacterCommand implements Command {
         String playerName = scanner.nextLine();
         player = new Player(playerName);
 
+        Race[] races = {new Dzin(), new Khan(), new Morvid(), new Castellan()};
+        Race chosen = races[new java.util.Random().nextInt(races.length)];
+        player.setRace(chosen);
+        chosen.racesDescriptions(player);
         return "Character created!" + player.getName();
     }
 
