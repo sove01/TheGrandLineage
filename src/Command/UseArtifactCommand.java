@@ -3,9 +3,12 @@ package Command;
 import Inventory.Artifact.Artifact;
 import Inventory.Player;
 
+import java.util.ArrayList;
+
 public class UseArtifactCommand implements Command {
     private Player player;
     private Artifact artifact;
+    private ArrayList<String> artifacts = new ArrayList<String>();
 
 
 

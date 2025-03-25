@@ -115,7 +115,6 @@ public class WorldMap {
 
         System.out.println("Map loaded successfully!\n");
         System.out.println("Trinkets spotted in this area:");
-        RandomTrinketSpawn();
 
         System.out.println("Regions and their locations:");
         System.out.println("--------------------------------");

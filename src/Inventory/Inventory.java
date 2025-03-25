@@ -20,4 +20,8 @@ public class Inventory {
             System.out.println("- " + item.getName());
         }
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }

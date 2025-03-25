@@ -15,6 +15,5 @@ public class Artifact extends Item {
     public String use(Player player) {
         return "Using artifact : " + getName() +
                 "\n" + "Effect : " + Effect;
-
     }
 }

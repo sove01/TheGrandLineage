@@ -1,6 +1,7 @@
 package Command;
 
 import Inventory.Player;
+import NPC.GameObject;
 
 public class InteractCommand implements Command {
     private Player player;
