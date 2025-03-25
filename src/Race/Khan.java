@@ -5,7 +5,7 @@ import Inventory.Player;
 public class Khan implements Race {
     @Override
     public String getRaceName() {
-        return "";
+        return "Khan";
     }
 
     @Override

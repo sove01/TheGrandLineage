@@ -1,5 +1,6 @@
 package World;
 
+import Inventory.Trinket;
 import NPC.Doctor;
 import NPC.Merchant;
 import NPC.SuperClassNPC;
@@ -15,43 +16,27 @@ public class WorldMap {
     private HashMap<String, Region> regions = new HashMap<>();
     private HashMap<Integer, Location> world = new HashMap<>();
     private int currentPosition;
-    private ArrayList<String> trinkets = new ArrayList<>();
+    //    private ArrayList<String> trinkets = new ArrayList<>();
     private Random rand = new Random();
 
-    //list of trinkets
-    public WorldMap() {
-        trinkets.add("old amulet");
-        trinkets.add("old ring");
-        trinkets.add("idol of the forgotten");
-        trinkets.add("opal");
-        trinkets.add("emerald");
-        trinkets.add("sapphire");
-        trinkets.add("ruby");
-        trinkets.add("diamond");
-        trinkets.add("Scroll of ignis");
-        trinkets.add("Scroll of gelidus");
-        trinkets.add("Scroll of tenebris");
-        trinkets.add("Scroll of celeritas");
-        trinkets.add("Scroll of nocere");
-        trinkets.add("Scroll of scrupus");
-        trinkets.add("Scroll of viribus");
-        trinkets.add("Scroll of velo");
-        trinkets.add("Scroll of sagitta sol");
+    private void AddRandomTrinketsToLocations() {
+        for (Location loc : world.values()) {
+            if (rand.nextInt(100) < 30) {
+                spawnTrinkets(loc);
+            }
+        }
     }
 
-    // random trinket spawns
-    public void RandomTrinketSpawn() {
-        if (world.isEmpty()) {
-            System.out.println("Cannot spawn trinkets world is not loaded ");
-        }
-        Objects[] keys = (Objects[]) world.keySet().toArray();
-        int randomLocationId = (int) rand.nextInt(keys.length);
-        Location location = world.get(randomLocationId);
+    private void spawnTrinkets(Location location) {
+        String[] trinketNames = {"Old Amulet", "Old Ring", "Idol of the forgotten", "Opal", "Ruby", "Emerald", "Diamond"};
+        int[] trinketValues = {4, 5, 6, 10, 15, 100, 150};
 
-        String trinket = trinkets.get(rand.nextInt(trinkets.size()));
+        String trinketName = trinketNames[rand.nextInt(trinketNames.length)];
+        int trinketValue = trinketValues[rand.nextInt(trinketValues.length)];
 
-        location.addItem(trinket);
-
+        Trinket trinket = new Trinket(trinketName, "A valueable trinket", false, trinketValue);
+        location.addItems(trinket);
+        System.out.println("A " + trinketName + "has spawned in " + location.getName());
 
     }
 
@@ -93,21 +78,22 @@ public class WorldMap {
         }
     }
 
-    private void addNPCsToAllLocations(){
+    private void addNPCsToAllLocations() {
         // = all locations
-        for(Location location : world.values()) {
+        for (Location location : world.values()) {
             location.setNPC(new Doctor("Doctor", "I can heal your wounds for silver."));
             location.setNPC(new Merchant("Merchant", "Want to sell your trinkets?"));
         }
         addClassTrainers(); // = fixed location
     }
 
-    private void addClassTrainers(){
+    private void addClassTrainers() {
         world.get(8).setNPC(new UltraClassNPC("Sentinel of Light", "I will train you for Ultra Class!", "UltraClass"));
         world.get(9).setNPC(new SuperClassNPC("Necrotower Guard", "I will train you for Super Class.", "SuperClass"));
         world.get(10).setNPC(new UltraClassNPC("Oresfall Elder", "I will help you ascend to Ultra Class.", "UltraClass"));
         world.get(11).setNPC(new SuperClassNPC("Tundra Warrior", "I can train you for Super Class.", "SuperClass"));
     }
+
     private void setRandomStart() {
         Random rand = new Random();
         // Gets all IDS of locations

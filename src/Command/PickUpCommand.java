@@ -2,10 +2,13 @@ package Command;
 
 import Inventory.Item;
 import Inventory.Player;
+import World.Location;
 
 public class PickUpCommand implements Command {
     private Player player;
     private Item item;
+    private Location location;
+
 
     public PickUpCommand(Player player, Item item) {
         this.player = player;
@@ -20,7 +23,9 @@ public class PickUpCommand implements Command {
 
     @Override
     public String undo() {
-        return "";
+        location.removeItem(item);
+        player.getInventory().removeItem(item);
+        return "Undid picking up " + item.getName() + ".";
     }
 
     @Override

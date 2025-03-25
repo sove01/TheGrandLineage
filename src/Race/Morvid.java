@@ -5,7 +5,7 @@ import Inventory.Player;
 public class Morvid implements Race{
     @Override
     public String getRaceName() {
-        return "";
+        return "Morvid";
     }
 
     @Override
