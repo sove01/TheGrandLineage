@@ -1,5 +1,11 @@
 package World;
 
+import NPC.Doctor;
+import NPC.Merchant;
+import NPC.SuperClassNPC;
+import NPC.UltraClassNPC;
+import Weaponry.UltraClass;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -76,6 +82,8 @@ public class WorldMap {
             }
 
             // Random spawn
+            addNPCsToAllLocations();
+            addClassTrainers();
             setRandomStart();
             return true;
 
@@ -85,6 +93,21 @@ public class WorldMap {
         }
     }
 
+    private void addNPCsToAllLocations(){
+        // = all locations
+        for(Location location : world.values()) {
+            location.setNPC(new Doctor("Doctor", "I can heal your wounds for silver."));
+            location.setNPC(new Merchant("Merchant", "Want to sell your trinkets?"));
+        }
+        addClassTrainers(); // = fixed location
+    }
+
+    private void addClassTrainers(){
+        world.get(8).setNPC(new UltraClassNPC("Sentinel of Light", "I will train you for Ultra Class!", "UltraClass"));
+        world.get(9).setNPC(new SuperClassNPC("Necrotower Guard", "I will train you for Super Class.", "SuperClass"));
+        world.get(10).setNPC(new UltraClassNPC("Oresfall Elder", "I will help you ascend to Ultra Class.", "UltraClass"));
+        world.get(11).setNPC(new SuperClassNPC("Tundra Warrior", "I can train you for Super Class.", "SuperClass"));
+    }
     private void setRandomStart() {
         Random rand = new Random();
         // Gets all IDS of locations

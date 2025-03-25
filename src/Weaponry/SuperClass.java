@@ -14,16 +14,16 @@ public class SuperClass extends BaseClass {
         if ("Orderly".equalsIgnoreCase(alignment)) {
             switch (weapon.toLowerCase()) {
                 case "dagger":
-                    superSkills.add(new Skill("AdvancedAgility", "A surge of speed boost.", "Orderly", 0));
+                    superSkills.add(new Skill("Advanced Agility", "A surge of speed boost.", "Orderly", 0));
                     break;
                 case "sword":
-                    superSkills.add();
+                    superSkills.add(new Skill("Action Surge", "Slashes the opponent with a flurry of attacks. ", "Orderly", 40));
                     break;
                 case "spear":
-                    superSkills.add();
+                    superSkills.add(new Skill());
                     break;
                 case "fist":
-                    superSkills.add();
+                    superSkills.add(new Skill());
                     break;
             }
         } else if ("Chaotic".equalsIgnoreCase(alignment)) {
@@ -32,13 +32,13 @@ public class SuperClass extends BaseClass {
                     superSkills.add(new Skill("AdvancedAgility", "A surge of speed boost.", "Orderly", 0));
                     break;
                 case "sword":
-                    superSkills.add();
+                    superSkills.add(new Skill());
                     break;
                 case "spear":
-                    superSkills.add();
+                    superSkills.add(new Skill());
                     break;
                 case "fist":
-                    superSkills.add();
+                    superSkills.add(new Skill());
                     break;
             }
         }

@@ -17,13 +17,13 @@ public class UltraClass extends  SuperClass {
                         ultraSkills.add(new Skill("AdvancedAgility", "A surge of speed boost.", "Orderly", 0));
                         break;
                     case "sword":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                     case "spear":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                     case "fist":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                 }
             } else if ("Chaotic".equalsIgnoreCase(alignment)) {
@@ -32,13 +32,13 @@ public class UltraClass extends  SuperClass {
                         ultraSkills.add(new Skill("AdvancedAgility", "A surge of speed boost.", "Orderly", 0));
                         break;
                     case "sword":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                     case "spear":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                     case "fist":
-                        ultraSkills.add();
+                        ultraSkills.add(new Skill());
                         break;
                 }
             }

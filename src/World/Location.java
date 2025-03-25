@@ -1,5 +1,8 @@
 package World;
 
+import Inventory.Player;
+import NPC.NPC;
+
 import java.util.ArrayList;
 
 public class Location {
@@ -8,6 +11,8 @@ public class Location {
     private int[] directions; // [North, South, East, West]
     private Region region;
     private ArrayList<String> items = new ArrayList<>();
+    private NPC npc;
+    private int EXPRewards;
 
     public Location(String name, int id, int[] directions, Region region) {
         this.name = name;
@@ -16,6 +21,16 @@ public class Location {
         this.region = region;
     }
 
+    public void setNPC(NPC npc) {
+        this.npc = npc;
+    }
+
+    public void interact(Player player) {
+        if(npc != null){
+            npc.interact(player);
+            player.gainEXP(EXPRewards);
+        }
+    }
     public void addItem(String item) {
         items.add(item);
     }
