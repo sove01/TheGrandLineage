@@ -1,5 +1,9 @@
 package Inventory;
 
+/**
+ * Valuable but non-functional items that can be sold to merchants.
+ * Trinkets provide no gameplay effects beyond their monetary value.
+ */
 public class Trinket extends Item {
     private int SilverValue;
 

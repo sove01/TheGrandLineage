@@ -11,6 +11,10 @@ import Weaponry.Skill;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the player character with inventory, stats, and progression systems.
+ * Handles all player-specific operations including items, skills, and leveling.
+ */
 public class Player {
     private SuperClass superclass;
     private UltraClass ultraclass;
@@ -26,8 +30,11 @@ public class Player {
     private int orderlyPoints;
     private int chaoticPoints;
 
-
-    // default stats
+    /**
+     * Creates a new player with default stats.
+     *
+     * @param name The player's name
+     */
     public Player(String name) {
         this.name = name;
         this.health = 100;
@@ -46,6 +53,11 @@ public class Player {
         return name;
     }
 
+    /**
+     * Adds an item to inventory via command pattern.
+     *
+     * @param item The item to add
+     */
     public void addItem(Item item) {
         Command itemUsageCommand = new ItemUsage(this, item);
         itemUsageCommand.execute();
@@ -55,20 +67,36 @@ public class Player {
         inventory.displayInventory();
     }
 
-
+    /**
+     * Picks up an item and adds to inventory.
+     *
+     * @param item The item to pick up
+     */
     public void pickup(Item item) {
         inventory.addItem(item);
         System.out.println("Picked up " + item.getName());
     }
 
+    /**
+     * Applies an artifact's effect.
+     *
+     * @param artifact The artifact to use
+     * @return Effect description
+     */
     public String applyArtifactEffect(Artifact artifact) {
         return "Applying artifact effect:" + artifact.getName();
     }
 
+    /**
+     * Modifiers for currency
+     */
     public void plusSilver(int amount) {
         this.silver += amount;
     }
 
+    /**
+     * Modifiers for currency
+     */
     public void minusSilver(int amount) {
         this.silver -= amount;
         if (this.silver < 0) {
@@ -84,6 +112,9 @@ public class Player {
         this.chaoticPoints += value;
     }
 
+    /**
+     * Checks and handles class progression
+     */
     public void checkClassUpgrade() {
         if (experience >= 5000 && ultraclass == null) {
             ultraclass = new UltraClass(equippedWeapon, alignment);
@@ -96,11 +127,21 @@ public class Player {
         }
     }
 
+    /**
+     * Gains experience and checks for level up.
+     *
+     * @param value EXP amount to add
+     */
     public void gainEXP(int value) {
         this.experience += value;
         checkClassUpgrade();
     }
 
+    /**
+     * Restores health (capped at 100).
+     *
+     * @param value Health amount to restore
+     */
     public void restoreHealth(int value) {
         this.health += value;
         if (health > 100) health = 100;
@@ -108,6 +149,12 @@ public class Player {
 
     }
 
+    /**
+     * Uses a learned skill.
+     *
+     * @param index Skill slot number
+     * @return Skill effect or error message
+     */
     public String useSkill(int index) {
         if (index > 0 && index < learnedSkills.size()) {
             return learnedSkills.get(index).use();

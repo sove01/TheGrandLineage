@@ -1,5 +1,9 @@
 package Inventory;
 
+/**
+ * Abstract class for all game items.
+ * Can be extended by specific item types (weapons, artifacts, etc.).
+ */
 public abstract class Item {
     protected String name;
     protected String description;
@@ -30,6 +34,12 @@ public abstract class Item {
         return value;
     }
 
+    /**
+     * Uses the item on the specified player.
+     *
+     * @param player The player using the item
+     * @return Result message of the item usage
+     */
     public abstract String use(Player player);
 
     public String displayItemDetails() {
