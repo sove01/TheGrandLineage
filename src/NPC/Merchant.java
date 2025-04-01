@@ -15,11 +15,9 @@ public class Merchant extends NPC {
         if (!player.getInventory().getItems().isEmpty()) {
             System.out.println("Buying your trinkets");
             player.plusSilver(trinketValue);
-            player.plusSilver(trinketValue);
-            System.out.println("You sold a trinket and got" + trinketValue + " silver.");
-        } else {
-            System.out.println("You don't have any trinkets");
-        }
+            player.getInventory().removeItem(player.getInventory().getItems().get(0));
+            System.out.println("You sold a trinket and got " + trinketValue + " silver.");
 
+        }
     }
 }
