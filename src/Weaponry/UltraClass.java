@@ -2,6 +2,10 @@ package Weaponry;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * Basically the same as SuperClass but with different skill set
+ */
+
 
 public class UltraClass extends  SuperClass {
     private List<Skill> ultraSkills;

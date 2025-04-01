@@ -3,9 +3,19 @@ package Weaponry;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents advanced combat specialization with alignment-based skills.
+ * Extends base class with powerful weapon-specific abilities.
+ */
 public class SuperClass extends BaseClass {
     private List<Skill> superSkills;
 
+    /**
+     * Creates a super class with alignment-specific skills.
+     *
+     * @param weapon    The specialized weapon type
+     * @param alignment "Orderly" or "Chaotic" alignment
+     */
     public SuperClass(String weapon, String alignment) {
         super(weapon);
         superSkills = new ArrayList<Skill>();
@@ -52,6 +62,9 @@ public class SuperClass extends BaseClass {
         }
     }
 
+    /**
+     * @return List of unlocked super skills
+     */
     public List<Skill> getSuperSkills() {
         return superSkills;
     }
