@@ -2,7 +2,10 @@ package NPC;
 
 import Inventory.Player;
 
-public class UltraClassNPC extends NPC{
+/**
+ * Same java doc as SuperClassNPC
+ */
+public class UltraClassNPC extends NPC {
 
     public UltraClassNPC(String name, String dialogue, String role) {
         super(name, dialogue, role);
