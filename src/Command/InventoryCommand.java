@@ -2,6 +2,9 @@ package Command;
 
 import Inventory.Player;
 
+/**
+ * Displays the player's current inventory when executed.
+ */
 public class InventoryCommand implements Command {
     private Player player;
 

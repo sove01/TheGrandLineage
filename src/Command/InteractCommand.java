@@ -3,6 +3,10 @@ package Command;
 import Inventory.Player;
 import NPC.GameObject;
 
+/**
+ * Command for interacting with game objects.
+ */
+
 public class InteractCommand implements Command {
     private Player player;
     private GameObject targetObject;

@@ -1,7 +1,6 @@
 package Command;
 
 import Inventory.Player;
-import World.Location;
 import World.WorldMap;
 
 import java.io.BufferedReader;
@@ -9,31 +8,33 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Handles game commands and player input.
+ */
 public class Console {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Scanner sc = new Scanner(System.in);
     private boolean exit = false;
 
-
-    HashMap<String, Command> Prompts;
-    private WorldMap map;
-    private Player player;
-    private CommandManager manager;
+    HashMap<String, Command> Prompts; // Available commands
+    private WorldMap map; // Game world
+    private Player player; // Player data
+    private CommandManager manager; // Command handler
 
     public Console() {
         this.manager = new CommandManager();
     }
 
+    /**
+     * Loads map and registers commands.
+     */
     private void initialize() {
         map = new WorldMap();
         if (!map.loadMap()) {
-            System.out.println("Map is not loaded");
+            System.out.println("Map load failed");
             exit = true;
             return;
         }
-
-//        CreateCharacterCommand createCharacterCommand = new CreateCharacterCommand(sc);
-//        createCharacterCommand.execute();
 
         Prompts = new HashMap<>();
         Prompts.put("help", new HelpCommand());
@@ -45,52 +46,44 @@ public class Console {
         Prompts.put("history", new HistoryCommand(manager));
         Prompts.put("useArtifact", new UseArtifactCommand(player));
         Prompts.put("new lineage", new CreateCharacterCommand(sc));
-
     }
 
+    /**
+     * Processes player input and executes commands.
+     */
     private void provedPrompt() {
-        System.out.println("Enter your command: ");
-        System.out.println(">");
+        System.out.print("> ");
         try {
-            String inputPrompt = sc.nextLine();
-
-            if (Prompts.containsKey(inputPrompt)) {
-                Command cmd = Prompts.get(inputPrompt);
+            String input = sc.nextLine();
+            if (Prompts.containsKey(input)) {
+                Command cmd = Prompts.get(input);
 
                 if (cmd instanceof MoveCommand) {
                     int direction = -1;
                     while (direction < 0 || direction > 3) {
                         map.displayMap();
-                        System.out.println("Which direction? (0: North, 1: South, 2: East, 3: West)");
-                        if (sc.hasNextInt()) {
-                            direction = sc.nextInt();
-                            sc.nextLine();
-                            if (direction < 0 || direction > 3) {
-                                System.out.println("Invalid direction. Please enter a number between 0 and 3.");
-                            }
-                        } else {
-                            System.out.println("Invalid input. Please enter a number.");
-                            sc.nextLine();
-                        }
+                        System.out.print("Direction (0-3): ");
+                        if (sc.hasNextInt()) direction = sc.nextInt();
+                        sc.nextLine();
                     }
                     ((MoveCommand) cmd).setDirection(direction);
                 }
 
-                System.out.println(Prompts.get(inputPrompt).execute());
+                System.out.println(cmd.execute());
                 exit = cmd.exit();
             } else {
-                System.out.println("Invalid prompt");
+                System.out.println("Unknown command");
             }
         } catch (Exception e) {
-            System.out.println("Invalid prompt" + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
+    /**
+     * Starts and runs the game loop.
+     */
     public void start() {
         initialize();
-        do {
-            provedPrompt();
-        } while (!exit);
+        while (!exit) provedPrompt();
     }
-
 }

@@ -5,25 +5,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Tracks and logs command history.
+ */
 public class History {
     private List<Command> commands = new ArrayList<>();
 
+    /**
+     * Adds command to history and logs it.
+     *
+     * @param command Command to record
+     */
     public void addCommand(Command command) {
         commands.add(command);
-        logCommand(command); // Add this line
+        logCommand(command);
     }
 
+    /**
+     * Writes command to log file.
+     *
+     * @param command Command to log
+     */
     private void logCommand(Command command) {
         try (FileWriter writer = new FileWriter("historylog.txt", true)) {
             writer.write(command.getClass().getSimpleName() + "\n");
         } catch (IOException e) {
-            System.out.println("Error writing to history log: " + e.getMessage());
+            System.err.println("Log error: " + e.getMessage());
         }
     }
 
+    /**
+     * Prints all executed commands.
+     */
     public void displayHistory() {
         if (commands.isEmpty()) {
-            System.out.println("No history available.");
+            System.out.println("No commands yet");
             return;
         }
 
@@ -33,6 +49,12 @@ public class History {
         }
     }
 
+    /**
+     * Gets command by index.
+     *
+     * @param index Command position
+     * @return Command or null if invalid index
+     */
     public Command getCommand(int index) {
         if (index >= 0 && index < commands.size()) {
             return commands.get(index);
@@ -40,6 +62,9 @@ public class History {
         return null;
     }
 
+    /**
+     * @return Number of stored commands
+     */
     public int size() {
         return commands.size();
     }

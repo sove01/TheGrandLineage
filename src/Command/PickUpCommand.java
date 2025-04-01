@@ -4,6 +4,9 @@ import Inventory.Item;
 import Inventory.Player;
 import World.Location;
 
+/**
+ * Handles picking up items from locations and adding them to player inventory.
+ */
 public class PickUpCommand implements Command {
     private Player player;
     private Item item;

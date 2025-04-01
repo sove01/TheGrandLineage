@@ -1,26 +1,39 @@
 package Command;
 
-public class HelpCommand implements Command{
-
+/**
+ * Displays available game commands.
+ */
+public class HelpCommand implements Command {
+    /**
+     * Prints command list.
+     *
+     * @return Empty string
+     */
     @Override
     public String execute() {
-        System.out.println("List of commands :");
-        System.out.println("  exit -> Exit the program");
-        System.out.println("  move -> Move to the next region/town");
-        System.out.println("  pickup -> Pick up an object");
-        System.out.println("  interact -> Interact with an object");
-        System.out.println("  inventory -> Displays inventory");
-        System.out.println("  history -> Displays history");
-        System.out.println("  useArtifact -> consumes artifact if requirements are met");
-        System.out.println("  new lineage -> creates a character slot");
+        System.out.println("Available commands:");
+        System.out.println("exit       - Quit game");
+        System.out.println("move       - Travel to new location");
+        System.out.println("pickup     - Take item");
+        System.out.println("interact   - Use object");
+        System.out.println("inventory  - Show items");
+        System.out.println("history    - Show command history");
+        System.out.println("useArtifact- Consume artifact");
+        System.out.println("new lineage- Create character");
         return "";
     }
 
+    /**
+     * @return Empty string (no undo)
+     */
     @Override
     public String undo() {
         return "";
     }
 
+    /**
+     * @return false (doesn't exit game)
+     */
     @Override
     public boolean exit() {
         return false;
