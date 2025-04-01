@@ -1,6 +1,7 @@
 package Command;
 
 import Inventory.Player;
+import World.Location;
 import World.WorldMap;
 
 import java.io.BufferedReader;
@@ -31,8 +32,8 @@ public class Console {
             return;
         }
 
-        CreateCharacterCommand createCharacterCommand = new CreateCharacterCommand(sc);
-        createCharacterCommand.execute();
+//        CreateCharacterCommand createCharacterCommand = new CreateCharacterCommand(sc);
+//        createCharacterCommand.execute();
 
         Prompts = new HashMap<>();
         Prompts.put("help", new HelpCommand());
@@ -43,6 +44,7 @@ public class Console {
         Prompts.put("inventory", new InventoryCommand(player));
         Prompts.put("history", new HistoryCommand(manager));
         Prompts.put("useArtifact", new UseArtifactCommand(player));
+        Prompts.put("new lineage", new CreateCharacterCommand(sc));
 
     }
 
@@ -58,6 +60,7 @@ public class Console {
                 if (cmd instanceof MoveCommand) {
                     int direction = -1;
                     while (direction < 0 || direction > 3) {
+                        map.displayMap();
                         System.out.println("Which direction? (0: North, 1: South, 2: East, 3: West)");
                         if (sc.hasNextInt()) {
                             direction = sc.nextInt();

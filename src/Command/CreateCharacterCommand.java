@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class CreateCharacterCommand implements Command {
     private Player player;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public CreateCharacterCommand(Scanner scanner) {
         this.scanner = scanner;
@@ -27,7 +27,7 @@ public class CreateCharacterCommand implements Command {
         Race chosen = races[new java.util.Random().nextInt(races.length)];
         player.setRace(chosen);
         chosen.racesDescriptions(player);
-        return "Character created!" + player.getName();
+        return "Your character name is " + player.getName() + " and your race is " +  chosen.getRaceName();
     }
 
     @Override

@@ -12,6 +12,7 @@ public class HelpCommand implements Command{
         System.out.println("  inventory -> Displays inventory");
         System.out.println("  history -> Displays history");
         System.out.println("  useArtifact -> consumes artifact if requirements are met");
+        System.out.println("  new lineage -> creates a character slot");
         return "";
     }
 

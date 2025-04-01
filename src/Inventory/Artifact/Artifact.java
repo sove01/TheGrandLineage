@@ -6,8 +6,8 @@ import Inventory.Player;
 public class Artifact extends Item {
     private String Effect;
 
-    public Artifact(String effect, String name, String description) {
-        super(name, description, true);
+    public Artifact(String effect, String name, String description, int value) {
+        super(name, description, true, value);
         Effect = effect;
     }
 
