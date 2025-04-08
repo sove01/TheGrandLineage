@@ -35,6 +35,8 @@ public class CreateCharacterCommand implements Command {
         player.setRace(chosen);
         chosen.racesDescriptions(player);
 
+        player.saveProgressToCSV();
+
         return String.format("%s the %s created", player.getName(), chosen.getRaceName());
     }
 

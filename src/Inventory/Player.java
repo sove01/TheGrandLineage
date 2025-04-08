@@ -8,6 +8,10 @@ import Race.Race;
 import Weaponry.*;
 import Weaponry.Skill;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +51,36 @@ public class Player {
         this.inventory = new Inventory();
         this.chaoticPoints = 0;
         this.orderlyPoints = 0;
+    }
+
+    public void saveProgressToCSV() {
+        String path = "playerProgress.csv";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+            File file = new File("playerProgress.csv");
+            if (file.length() == 0) {
+                writer.write("Name,Experience,Health,Inventory,LearnedSkills\n");
+            }
+
+            StringBuilder inventoryItems = new StringBuilder();
+            for (Item item : inventory.getItems()) {
+                inventoryItems.append(item.getName()).append(";");
+            }
+
+            StringBuilder skills = new StringBuilder();
+            for (Weaponry.Skill skill : learnedSkills) {
+                skills.append(skill.getSkillName()).append(";");
+            }
+
+            writer.write(name + ","
+                    + experience + ","
+                    + health + ","
+                    + inventoryItems.toString() + ","
+                    + skills.toString() + "\n");
+
+            System.out.println("Player progress saved successfully!");
+        } catch (IOException e) {
+            System.out.println("Error saving player progress: " + e.getMessage());
+        }
     }
 
     public String getName() {

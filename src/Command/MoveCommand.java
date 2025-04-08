@@ -1,5 +1,6 @@
 package Command;
 
+import Inventory.Player;
 import World.Location;
 import World.WorldMap;
 
@@ -10,6 +11,7 @@ import World.WorldMap;
 public class MoveCommand implements Command {
     private WorldMap map;
     private int direction;
+    private Player player;
 
     /**
      * @param map The game world map
@@ -38,6 +40,7 @@ public class MoveCommand implements Command {
     public String execute() {
         if (map.move(direction)) {
             Location currentLocation = map.getCurrentPosition();
+            currentLocation.spawnTrinketsInLocation(player);
             return "Moved to " + currentLocation.getName();
         } else {
             return "Cannot move in that direction. " + direction;

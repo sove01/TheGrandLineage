@@ -2,10 +2,12 @@ package World;
 
 import Inventory.Item;
 import Inventory.Player;
+import Inventory.Trinket;
 import NPC.NPC;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents a game location with items, NPCs, and navigation options.
@@ -19,6 +21,7 @@ public class Location {
     private NPC npc;
     private int EXPRewards;
     private List<Item> items;
+    private Random rand = new Random();
 
     /**
      * Creates a new game location.
@@ -77,6 +80,18 @@ public class Location {
             System.out.println("no trinkets to pick up here");
         }
     }
+
+    public void spawnTrinketsInLocation(Player player) {
+        if (rand.nextInt(100) < 30 && items.isEmpty()) {
+            String[] names = {"Old Amulet", "Old Ring", "Idol of the Forgotten", "Opal", "Ruby", "Emerald", "Diamond"};
+            int[] values = {4, 5, 6, 10, 15, 100, 150};
+            int index = rand.nextInt(names.length);
+            Trinket  trinket = new Trinket(names[index], "Valuable trinket", false, values[index]);
+            addItem(trinket);
+            System.out.println(names[index] + " spawned in " + getName());
+        }
+    }
+
 
     public void addItem(Item item) {
         items.add(item);

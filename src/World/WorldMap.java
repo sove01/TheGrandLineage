@@ -57,7 +57,6 @@ public class WorldMap {
     private void initializeWorld() {
         spawnNPCs();
         addClassTrainers();
-        AddRandomTrinketsToLocations();
         setRandomStartPosition();
     }
 
@@ -132,22 +131,20 @@ public class WorldMap {
      * Displays current map state and player position
      */
     public void displayMap() {
-        System.out.println("\n=== CURRENT MAP ===");
-        regions.values().forEach(region -> {
-            System.out.println("\nRegion: " + region.getName());
-            region.getLocations().forEach(loc ->
-                    System.out.printf("  - %s (ID: %d)%n", loc.getName(), loc.getId()));
-        });
-
         Location current = getCurrentPosition();
-        System.out.printf("%nCurrent Position: %s (Region: %s)%n",
-                current.getName(),
-                current.getRegion().getName());
-        System.out.printf("Exits: [N:%d S:%d E:%d W:%d]%n",
-                current.getDirection(0),
-                current.getDirection(1),
-                current.getDirection(2),
-                current.getDirection(3));
+        System.out.println("\n=== CURRENT MAP ===");
+        System.out.println("Current Position: " + current.getName() + " (Region: " + current.getRegion().getName() + ")");
+        System.out.print("Exits: ");
+
+        // Display directions available from current location
+        StringBuilder directions = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            int directionId = current.getDirection(i);
+            if (directionId != -1 && world.containsKey(directionId)) {
+                directions.append(getDirectionName(i)).append(": ").append(world.get(directionId).getName()).append(" ");
+            }
+        }
+        System.out.println(directions);
     }
 
     // Accessors
@@ -161,5 +158,20 @@ public class WorldMap {
 
     public HashMap<String, Region> getRegions() {
         return regions;
+    }
+
+    private String getDirectionName(int direction) {
+        switch (direction) {
+            case 0:
+                return "North";
+            case 1:
+                return "South";
+            case 2:
+                return "East";
+            case 3:
+                return "West";
+            default:
+                return "";
+        }
     }
 }

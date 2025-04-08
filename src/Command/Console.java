@@ -29,6 +29,7 @@ public class Console {
      * Loads map and registers commands.
      */
     private void initialize() {
+        System.out.println("Welcome to the grand lineage");
         map = new WorldMap();
         if (!map.loadMap()) {
             System.out.println("Map load failed");
