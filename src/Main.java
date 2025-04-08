@@ -4,7 +4,7 @@ import World.WorldMap;
 
 import java.util.Scanner;
 
-/**
+    /**
  * Starts the game
  */
 public class Main {

@@ -1,5 +1,7 @@
 package World;
 
+import Command.InteractCommand;
+import Inventory.Player;
 import Inventory.Trinket;
 import NPC.*;
 
@@ -17,6 +19,7 @@ public class WorldMap {
     private final HashMap<Integer, Location> world = new HashMap<>();
     private int currentPosition;
     private final Random rand = new Random();
+    private Player player;
 
     /**
      * Loads map data from CSV file and initializes world state.
@@ -88,8 +91,8 @@ public class WorldMap {
      */
     private void spawnNPCs() {
         world.values().forEach(loc -> {
-            loc.setNPC(new Doctor("Doctor", "I can heal your wounds for silver."));
-            loc.setNPC(new Merchant("Merchant", "Want to sell your trinkets?"));
+            loc.addNPC(new Doctor("Doctor", "I can heal your wounds for silver."));
+            loc.addNPC(new Merchant("Merchant", "Want to sell your trinkets?"));
         });
     }
 
@@ -119,9 +122,15 @@ public class WorldMap {
      * @return true if movement succeeded
      */
     public boolean move(int direction) {
-        int nextId = getCurrentPosition().getDirection(direction);
+        Location current = world.get(currentPosition);
+        int nextId = current.getDirection(direction);
         if (nextId != -1 && world.containsKey(nextId)) {
             currentPosition = nextId;
+            Location nextLoc = world.get(currentPosition);
+            InteractCommand interactCommand = new InteractCommand(player, nextLoc);
+            System.out.println(interactCommand.execute());
+//            Location cl = getCurrentPosition();
+//            cl.spawnTrinketsInLocation();
             return true;
         }
         return false;
@@ -132,7 +141,7 @@ public class WorldMap {
      */
     public void displayMap() {
         Location current = getCurrentPosition();
-        System.out.println("\n=== CURRENT MAP ===");
+        System.out.println("\n=== CURRENT POSITION ===");
         System.out.println("Current Position: " + current.getName() + " (Region: " + current.getRegion().getName() + ")");
         System.out.print("Exits: ");
 

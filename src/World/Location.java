@@ -21,6 +21,7 @@ public class Location {
     private NPC npc;
     private int EXPRewards;
     private List<Item> items;
+    private List<NPC> npcs;
     private Random rand = new Random();
 
     /**
@@ -38,6 +39,17 @@ public class Location {
         this.directions = directions;
         this.region = region;
         this.items = new ArrayList<>();
+        loadTrinketsFromCSV();
+        this.npcs = new ArrayList<>();
+    }
+
+    public void addNPC(NPC npc) {
+        npcs.add(npc);
+    }
+
+
+    public List<NPC> getNPCs() {
+        return npcs;
     }
 
     public void addItems(Item item) {
@@ -81,14 +93,21 @@ public class Location {
         }
     }
 
-    public void spawnTrinketsInLocation(Player player) {
-        if (rand.nextInt(100) < 30 && items.isEmpty()) {
-            String[] names = {"Old Amulet", "Old Ring", "Idol of the Forgotten", "Opal", "Ruby", "Emerald", "Diamond"};
-            int[] values = {4, 5, 6, 10, 15, 100, 150};
-            int index = rand.nextInt(names.length);
-            Trinket  trinket = new Trinket(names[index], "Valuable trinket", false, values[index]);
+    public void spawnTrinketsInLocation() {
+        List<Trinket> trinkets = Trinket.loadTrinketsFromCSV("src/trinkets.csv");
+        for (Trinket trinket : trinkets) {
             addItem(trinket);
-            System.out.println(names[index] + " spawned in " + getName());
+        }
+        System.out.println("Trinkets spawned in " + name + ":");
+        for (Item item : items) {
+            System.out.println("- " + item.getName() + ": " + item.getDescription() + " (Value: " + item.getValue() + ")");
+        }
+    }
+
+    public void loadTrinketsFromCSV() {
+        List<Trinket> loadedTrinkets = Trinket.loadTrinketsFromCSV("src/trinkets.csv");
+        for (Trinket trinket : loadedTrinkets) {
+            addItem(trinket);
         }
     }
 
@@ -122,5 +141,16 @@ public class Location {
 
     public Region getRegion() {
         return region;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void interactWithNPCs(Player player) {
+        for (NPC npc : npcs) {
+            npc.interact(player);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package UnitTests;
 
 import Command.MoveCommand;
+import Inventory.Player;
 import World.Location;
 import World.Region;
 import World.WorldMap;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MoveCommandTest {
     private WorldMap worldMap;
     private MoveCommand command;
+    private Player player;
 
     @BeforeEach
     void setUpMap() {
@@ -40,7 +42,7 @@ class MoveCommandTest {
                 return true; //skips loading from file
             }
         }
-        command = new MoveCommand(worldMap, 0); // North
+        command = new MoveCommand(worldMap,player, 0); // North
     }
 
     @Test

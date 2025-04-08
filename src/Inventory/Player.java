@@ -55,7 +55,7 @@ public class Player {
 
     public void saveProgressToCSV() {
         String path = "playerProgress.csv";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) {
             File file = new File("playerProgress.csv");
             if (file.length() == 0) {
                 writer.write("Name,Experience,Health,Inventory,LearnedSkills\n");

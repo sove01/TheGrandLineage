@@ -40,7 +40,7 @@ public class Console {
         Prompts = new HashMap<>();
         Prompts.put("help", new HelpCommand());
         Prompts.put("exit", new ExitCommand());
-        Prompts.put("move", new MoveCommand(map, -1));
+        Prompts.put("move", new MoveCommand(map,player, -1));
         Prompts.put("pickup", new PickUpCommand(player, null));
         Prompts.put("interact", new InteractCommand(player, null));
         Prompts.put("inventory", new InventoryCommand(player));

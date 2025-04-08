@@ -2,6 +2,8 @@ package Command;
 
 import Inventory.Player;
 import NPC.GameObject;
+import NPC.NPC;
+import World.Location;
 
 /**
  * Command for interacting with game objects.
@@ -9,17 +11,25 @@ import NPC.GameObject;
 
 public class InteractCommand implements Command {
     private Player player;
-    private GameObject targetObject;
+    private Location location;
+    private NPC npc;
 
-    public InteractCommand(Player player, GameObject targetObject) {
+    public InteractCommand(Player player, Location loc) {
         this.player = player;
-        this.targetObject = targetObject;
+        this.location = loc;
     }
 
 
     @Override
     public String execute() {
-        return "Interacted with " + targetObject.getName() + ".";
+        if (!location.getNPCs().isEmpty()) {
+            for (NPC npc : location.getNPCs()) {
+                npc.interact(player);  // Interact with each NPC
+            }
+            return "Interacted with all NPCs in " + location.getName() + ".";
+        } else {
+            return "There are no NPCs to interact with in this location.";
+        }
     }
 
     @Override

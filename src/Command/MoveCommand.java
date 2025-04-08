@@ -17,8 +17,9 @@ public class MoveCommand implements Command {
      * @param map The game world map
      * @param direction Initial movement direction
      */
-    public MoveCommand(WorldMap map, int direction) {
+    public MoveCommand(WorldMap map, Player player, int direction) {
         this.map = map;
+        this.player = player;
         this.direction = direction;
     }
 
@@ -40,7 +41,7 @@ public class MoveCommand implements Command {
     public String execute() {
         if (map.move(direction)) {
             Location currentLocation = map.getCurrentPosition();
-            currentLocation.spawnTrinketsInLocation(player);
+            currentLocation.spawnTrinketsInLocation();
             return "Moved to " + currentLocation.getName();
         } else {
             return "Cannot move in that direction. " + direction;
